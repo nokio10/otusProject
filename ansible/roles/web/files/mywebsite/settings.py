@@ -16,9 +16,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com', '192.168.1.151', '192.168.11.153']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'otusproject.ru', '192.168.1.151', '192.168.11.153']
 
-
+CSRF_TRUSTED_ORIGINS = ['https://otusproject.ru']
 # Application definition
 
 INSTALLED_APPS = [
