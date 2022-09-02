@@ -23,7 +23,21 @@
   systemd:
     name: docker
     enabled: yes
-    state: restarted
+    state: stop
+
+- name: edit docker unit
+  lineinfile:
+    dest: /etc/systemd/system/multi-user.target.wants/docker.service
+    state: absent
+    line: "LimitNOFILE=ulimit"
+    regexp: "LimitNOFILE=1048576"
+
+- name: start docker
+  systemd:
+    name: docker
+    enabled: yes
+    state: restart
+    daemon_reload: yes
 
 - name: Create ssl 
   expect: 
