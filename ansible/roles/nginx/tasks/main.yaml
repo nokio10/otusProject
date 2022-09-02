@@ -1,0 +1,55 @@
+- name: install packages
+  yum: 
+    name: 
+      - docker-compose
+      - docker
+      - iptables
+      - iptables-services
+      - python-pip
+      - python-setuptools
+    state: present
+    update_cache: true
+
+- name: Install pexpect
+  pip:
+    name: pexpect
+
+- name: start docker
+  systemd:
+    name: docker
+    enabled: yes
+    state: restarted
+
+- name: Create ssl 
+  expect: 
+    command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /vagrant/ansible/roles/nginx/files/ssl.key -out /vagrant/ansible/roles/nginx/files/ssl.crt
+    timeout: null
+    responses: 
+      '.*Country Name .*': "ru"
+      '.*State or Province.*': "sankt-peterburg" 
+      '.*Locality Name.*': "City" 
+      '.*Organization Name.*': "Otus" 
+      '.*Organizational Unit.*': "linux-administrator" 
+      '.*Common Name.*': "otusproject.som" 
+      '.*Email Address.*': "1@1.ru" 
+
+- name: Docker-compose up
+  command: docker-compose -f docker-compose.yml up -d
+  args:
+    chdir: /vagrant/ansible/roles/nginx/files/
+
+- name: copy iptables2 config
+  copy:
+    src: iptables
+    dest: /etc/sysconfig/iptables
+    owner: root
+    group: root
+    mode: 0600
+
+- name: start and enable iptables service
+  service:
+    name: iptables
+    state: restarted
+    enabled: true
+
+    

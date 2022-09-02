@@ -2,4 +2,45 @@ webmaster_password: "87654321q"
 repluser_password: "12345678q"
 barman_password: "14253678q"
 ansible_user: vagrant
-#ansible_private_key_file: ".vagrant/machines/{{ hostvars.inventory_hostname }}/virtualbox/private_key"
+
+
+sysctl_nginx:
+  net.core.somaxconn: "65535"
+  net.ipv4.netfilter.ip_conntrack_max: "1048576"
+  net.netfilter.nf_conntrack_max: "1048576"
+  net.ipv4.tcp_max_syn_backlog: "65535"
+  net.ipv4.tcp_syncookies: "1"
+  net.ipv4.tcp_timestamps: "1"
+  net.ipv4.ip_local_port_range: "1024 65535"
+  fs.nr_open: "200000"
+  fs.file-max: "200000"
+
+sysctl_web:
+  net.core.somaxconn: "65535"
+  net.ipv4.netfilter.ip_conntrack_max: "1048576"
+  net.netfilter.nf_conntrack_max: "1048576"
+  net.ipv4.tcp_max_syn_backlog: "65535"
+  net.ipv4.tcp_syncookies: "1"
+  net.ipv4.tcp_timestamps: "1"
+  net.ipv4.ip_local_port_range: "1024 65535"
+
+sysctl_master:
+  net.core.somaxconn: "65535"
+  net.ipv4.netfilter.ip_conntrack_max: "1048576"
+  net.netfilter.nf_conntrack_max: "1048576"
+  net.ipv4.tcp_max_syn_backlog: "65535"
+  net.ipv4.tcp_syncookies: "1"
+  net.ipv4.tcp_timestamps: "1"
+  net.ipv4.ip_local_port_range: "1024 65535"
+
+sysctl_slave:
+  net.core.somaxconn: "65535"
+  net.ipv4.netfilter.ip_conntrack_max: "1048576"
+  net.netfilter.nf_conntrack_max: "1048576"
+  net.ipv4.tcp_max_syn_backlog: "65535"
+  net.ipv4.tcp_syncookies: "1"
+  net.ipv4.tcp_timestamps: "1"
+  net.ipv4.ip_local_port_range: "1024 65535"
+
+
+

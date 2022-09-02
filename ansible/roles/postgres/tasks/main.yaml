@@ -2,7 +2,6 @@
   yum: 
     name: 
       - http://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-      - epel-release
     state: present
     update_cache: true
 

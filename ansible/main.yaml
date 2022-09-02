@@ -1,3 +1,8 @@
+- hosts: all
+  become: yes
+  roles:
+    - role: roles/prepare
+
 - hosts: postgres
   become: yes
   roles:
@@ -7,6 +12,11 @@
   become: yes
   roles:
     - role: roles/backup
+
+- hosts: nginx
+  become: yes
+  roles:
+    - role: roles/nginx    
 
 - hosts: web
   become: yes

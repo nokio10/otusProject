@@ -1,0 +1,17 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Default setup
+-A INPUT -p icmp -j ACCEPT -m comment --comment "Allow ICMP"
+-A INPUT -i lo -j ACCEPT -m comment --comment "Allow local"
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT -m comment --comment "Allow established connections"
+-A INPUT -p tcp --tcp-flags SYN,ACK SYN,ACK -m state --state NEW -j REJECT --reject-with tcp-reset
+-A INPUT -p tcp ! --syn -m state --state NEW -j DROP -m comment --comment "New not syn"
+
+# Services
+-A INPUT -p tcp --dport 22 -j ACCEPT -m comment --comment "ssh access"
+-A INPUT -p tcp --dport 80 -j ACCEPT -m comment --comment "http access"
+-A INPUT -p tcp --dport 443 -j ACCEPT -m comment --comment "https access"
+COMMIT
