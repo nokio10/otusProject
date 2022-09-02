@@ -43,7 +43,7 @@
 
 - name: Add ssl_key
   copy:
-    dest: /etc/nginx/certs/ssl.crt
+    dest: /etc/nginx/certs/ssl.key
     src: /vagrant/ansible/roles/nginx/files/ssl.key
     remote_src: yes
     group: root
