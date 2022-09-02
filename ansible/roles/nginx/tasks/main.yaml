@@ -18,7 +18,7 @@
     state: restarted
     enabled: true
 
-- name: Create ssl 
+- name: Create ssl cert
   expect: 
     command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /vagrant/ansible/roles/nginx/files/ssl.key -out /vagrant/ansible/roles/nginx/files/ssl.crt
     timeout: null
@@ -36,7 +36,7 @@
     name: nginx
     state: present
 
-- name: Check cert dir
+- name: Check certs dir
   file: 
     path: /etc/nginx/certs
     state: directory
