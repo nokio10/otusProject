@@ -13,12 +13,6 @@
   pip:
     name: pexpect
 
-- name: start and enable iptables service
-  service:
-    name: iptables
-    state: restarted
-    enabled: true
-
 - name: Set httpd_can_network_connect
   ansible.posix.seboolean:
     name: httpd_can_network_connect
@@ -112,4 +106,8 @@
     group: root
     mode: 0600
 
-
+- name: start and enable iptables service
+  service:
+    name: iptables
+    state: restarted
+    enabled: true
