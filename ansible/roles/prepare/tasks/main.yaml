@@ -12,5 +12,4 @@
     state: present
     reload: yes
     ignoreerrors: yes
-  loop: "sysctl_{{ ansible_hostname }}"
-
+  with_dict: "{{ sysctl }}"

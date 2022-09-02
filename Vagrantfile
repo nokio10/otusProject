@@ -30,8 +30,8 @@ Vagrant.configure("2") do |config|
           box.vm.host_name = boxname.to_s
 
           box.vm.network "private_network", ip: boxconfig[:ip_addr]
-      if boxname.to_s == "backup"
-      box.vm.network "forwarded_port", guest: 8080, host: 8080
+      if boxname.to_s == "nginx"
+      box.vm.network "forwarded_port", guest: 80, host: 80
       box.vm.network "forwarded_port", guest: 443, host: 443
         end
           box.vm.provider :virtualbox do |vb|

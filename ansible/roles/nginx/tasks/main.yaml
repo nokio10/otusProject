@@ -12,12 +12,16 @@
   pip:
     name: pexpect
 
+- name: start and enable iptables service
+  service:
+    name: iptables
+    state: restarted
+    enabled: true
+
 - name: start docker
   systemd:
     name: docker
     enabled: yes
-    state: restart
-    daemon_reload: yes
 
 - name: Create ssl 
   expect: 
