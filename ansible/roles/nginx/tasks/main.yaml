@@ -18,6 +18,18 @@
     state: restarted
     enabled: true
 
+- name: Set httpd_can_network_connect
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: yes
+    persistent: yes
+
+- name: Set httpd_setrlimit
+  ansible.posix.seboolean:
+    name: httpd_setrlimit
+    state: yes
+    persistent: yes
+
 - name: Create ssl cert
   expect: 
     command: openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /vagrant/ansible/roles/nginx/files/ssl.key -out /vagrant/ansible/roles/nginx/files/ssl.crt
