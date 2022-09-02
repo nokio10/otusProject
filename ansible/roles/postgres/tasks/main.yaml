@@ -74,6 +74,12 @@
       '.*Enter it.*': "{{ webmaster_password }}"                 
   when: ansible_hostname == 'master'
 
+- name: Create db website
+  shell: su - postgres -c "psql -c 'CREATE DATABASE website;'"
+
+- name: Create db website
+  shell: su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE website TO webmaster;'"
+
 - name: restart network on master
   shell: systemctl restart network
   when: ansible_hostname == 'master'

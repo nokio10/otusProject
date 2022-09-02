@@ -10,10 +10,19 @@
     state: present
     update_cache: true
 
+- name: start docker
+  systemd:
+    name: docker
+    enabled: yes
+    state: restarted
+
 - name: Docker-compose up
-  shell: docker-compose -f /vagrant/ansible/roles/web/files/docker-compose.yml up -d
+  command: docker-compose -f docker-compose.yml up -d
+  args:
+    chdir: /vagrant/ansible/roles/web/files/
 
 - name: start migration 
   shell: docker-compose -f docker-compose.yml exec web python manage.py migrate
   args:
     chdir: /vagrant/ansible/roles/web/files/
+  ignore_errors: true
