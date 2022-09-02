@@ -5,6 +5,7 @@
       - iptables-services
       - python-pip
       - python-setuptools
+      - libsemanage-python
     state: present
     update_cache: true
 
