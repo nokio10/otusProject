@@ -1,3 +1,7 @@
+- name: install epel-release
+  yum:
+    name: epel-release
+
 - name: install packages
   yum: 
     name: 
@@ -7,9 +11,9 @@
     update_cache: true
 
 - name: Docker-compose up
-  shell: docker-compose -f /vagrant/ansible/web/roles/files/docker-compose.yml up -d
+  shell: docker-compose -f /vagrant/ansible/roles/web/files/docker-compose.yml up -d
 
 - name: start migration 
   shell: docker-compose -f docker-compose.yml exec web python manage.py migrate
   args:
-    chdir: /vagrant/ansible/web/roles/files/
+    chdir: /vagrant/ansible/roles/web/files/

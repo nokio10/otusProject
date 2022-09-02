@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
       if boxname.to_s == "web"
       box.vm.provision "ansible" do |ansible|
       ansible.playbook = "ansible/main.yaml"
+      ansible.inventory_path = "./ansible/inventory/hosts.ini"
       ansible.host_key_checking = "false"
       ansible.limit = "all"
       end
