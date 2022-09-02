@@ -27,7 +27,9 @@ Vagrant.configure("2") do |config|
           box.vm.host_name = boxname.to_s
 
           box.vm.network "private_network", ip: boxconfig[:ip_addr]
-
+      if boxname.to_s == "backup"
+      box.vm.network "forwarded_port", guest: 8080, host: 8080
+        end
           box.vm.provider :virtualbox do |vb|
             vb.customize ["modifyvm", :id, "--memory", "1024"]
           end
@@ -38,9 +40,6 @@ Vagrant.configure("2") do |config|
       ansible.host_key_checking = "false"
       ansible.limit = "all"
       end
-      if boxname.to_s == "backup"
-      box.vm.network "forwarded_port", guest: 8080, host: 8080
-        end
 	end
 	end
   end
