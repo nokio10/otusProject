@@ -10,6 +10,11 @@
     state: present
     update_cache: true
 
+- name: Read file limit from nginx.conf
+  set_fact:
+    limit: "{{ item | regex_search('\\d+', multiline=True) }}"
+  loop: "{{ target }}" 
+
 - name: Install pexpect
   pip:
     name: pexpect
@@ -52,4 +57,3 @@
     state: restarted
     enabled: true
 
-    
