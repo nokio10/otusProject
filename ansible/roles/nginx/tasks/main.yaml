@@ -1,8 +1,6 @@
 - name: install packages
   yum: 
     name: 
-      - docker-compose
-      - docker
       - iptables
       - iptables-services
       - python-pip
@@ -10,27 +8,9 @@
     state: present
     update_cache: true
 
-- name: Read file limit from nginx.conf
-  set_fact:
-    limit: "{{ item | regex_search('\\d+', multiline=True) }}"
-  loop: "{{ target }}" 
-
 - name: Install pexpect
   pip:
     name: pexpect
-
-- name: start docker
-  systemd:
-    name: docker
-    enabled: yes
-    state: stop
-
-- name: edit docker unit
-  lineinfile:
-    dest: /etc/systemd/system/multi-user.target.wants/docker.service
-    state: absent
-    line: "LimitNOFILE=ulimit"
-    regexp: "LimitNOFILE=1048576"
 
 - name: start docker
   systemd:
@@ -52,12 +32,58 @@
       '.*Common Name.*': "otusproject.som" 
       '.*Email Address.*': "1@1.ru" 
 
-- name: Docker-compose up
-  command: docker-compose -f docker-compose.yml up -d
-  args:
-    chdir: /vagrant/ansible/roles/nginx/files/
+- name: Install nginx
+  yum:
+    name: nginx
+    state: present
 
-- name: copy iptables2 config
+- name: Check cert dir
+  file: 
+    path: /etc/nginx/certs
+    state: directory
+
+- name: Add ott_tricolor_tv_bundle_crt
+  copy:
+    dest: /etc/nginx/certs/ssl.crt
+    src: /vagrant/ansible/roles/nginx/files/ssl.key
+    remote_src: yes
+    group: root
+    owner: root
+    mode: '0644'
+
+- name: Add ott_tricolor_tv_bundle_crt
+  copy:
+    dest: /etc/nginx/certs/ssl.crt
+    src: /vagrant/ansible/roles/nginx/files/ssl.crt
+    remote_src: yes
+    group: root
+    owner: root
+    mode: '0644'    
+
+- name: copy nginx.conf
+  copy:
+    dest: /etc/nginx/conf.d/mds_pos_prod_proxy.conf
+    src: /vagrant/ansible/roles/nginx/files/nginx.conf
+    group: root
+    owner: root
+    mode: '0644'
+    remote_src: yes
+
+- name: Test nginx.conf
+  command: "nginx -t"
+  register: test
+ 
+- name: Test nginx.conf successful
+  debug: 
+    msg: success
+
+- name: start nginx
+  systemd:
+    name: nginx
+    enabled: yes
+    state: restarted
+
+- name: copy iptables config
   copy:
     src: iptables
     dest: /etc/sysconfig/iptables

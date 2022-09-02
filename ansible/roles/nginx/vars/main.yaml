@@ -1,2 +1,0 @@
-input : "{{ lookup('template', '/vagrant/ansible/roles/nginx/files/nginx.conf') }}"
-target: "{{ input | regex_findall('^worker_rlimit_nofile\\b\\s+\\d*\\S+.*', multiline=True)}}"
