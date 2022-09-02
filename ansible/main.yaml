@@ -1,5 +1,14 @@
-- hosts: all
+- hosts: postgres
+  become: yes
   roles:
     - role: roles/postgres
+
+- hosts: backup
+  become: yes
+  roles:
     - role: roles/backup
-    - role: roles/web
+
+- hosts: web
+  become: yes
+  roles:
+    - role: roles/web    
