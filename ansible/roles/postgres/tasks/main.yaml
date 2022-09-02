@@ -76,9 +76,11 @@
 
 - name: Create db website
   shell: su - postgres -c "psql -c 'CREATE DATABASE website;'"
+  when: ansible_hostname == 'master'
 
-- name: Create db website
+- name: Grant priv db website
   shell: su - postgres -c "psql -c 'GRANT ALL PRIVILEGES ON DATABASE website TO webmaster;'"
+  when: ansible_hostname == 'master'
 
 - name: restart network on master
   shell: systemctl restart network
