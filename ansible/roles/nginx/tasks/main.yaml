@@ -59,9 +59,18 @@
     owner: root
     mode: '0644'    
 
-- name: copy nginx.conf
+- name: copy myconf.conf
   copy:
     dest: /etc/nginx/conf.d/myconf.conf
+    src: /vagrant/ansible/roles/nginx/files/nyconf.conf
+    group: root
+    owner: root
+    mode: '0644'
+    remote_src: yes
+
+- name: copy nginx.conf
+  copy:
+    dest: /etc/nginx/nginx.conf
     src: /vagrant/ansible/roles/nginx/files/nginx.conf
     group: root
     owner: root
