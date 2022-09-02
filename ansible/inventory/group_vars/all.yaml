@@ -11,8 +11,6 @@ sysctl:
   net.ipv4.tcp_syncookies: "1"
   net.ipv4.tcp_timestamps: "1"
   net.ipv4.ip_local_port_range: "1024 65535"
-  fs.nr_open: "200000"
-  fs.file-max: "200000"
 
 sysctl_nginx:
   net.core.somaxconn: "65535"
@@ -22,8 +20,8 @@ sysctl_nginx:
   net.ipv4.tcp_syncookies: "1"
   net.ipv4.tcp_timestamps: "1"
   net.ipv4.ip_local_port_range: "1024 65535"
-  fs.nr_open: "200000"
-  fs.file-max: "200000"
+  fs.nr_open: "{{ limit }}"
+  fs.file-max: "{{ limit }}"
 
 sysctl_web:
   net.core.somaxconn: "65535"
@@ -51,6 +49,3 @@ sysctl_slave:
   net.ipv4.tcp_syncookies: "1"
   net.ipv4.tcp_timestamps: "1"
   net.ipv4.ip_local_port_range: "1024 65535"
-
-
-
