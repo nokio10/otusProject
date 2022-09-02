@@ -10,20 +10,26 @@
     state: present
     update_cache: true
 
-- name: Read file limit from nginx.conf
-  set_fact:
-    limit: "{{ item | regex_search('\\d+', multiline=True) }}"
-  loop: "{{ target }}" 
+#- name: Read file limit from nginx.conf
+#  set_fact:
+#    limit: "{{ item | regex_search('\\d+', multiline=True) }}"
+#  loop: "{{ target }}" 
 
 - name: Install pexpect
   pip:
     name: pexpect
 
+- name: start and enable iptables service
+  service:
+    name: iptables
+    state: restarted
+    enabled: true
+
 - name: start docker
   systemd:
     name: docker
     enabled: yes
-    state: stop
+    state: stopped
 
 - name: edit docker unit
   lineinfile:
@@ -36,7 +42,7 @@
   systemd:
     name: docker
     enabled: yes
-    state: restart
+    state: restarted
     daemon_reload: yes
 
 - name: Create ssl 
@@ -57,13 +63,13 @@
   args:
     chdir: /vagrant/ansible/roles/nginx/files/
 
-- name: copy iptables2 config
-  copy:
-    src: iptables
-    dest: /etc/sysconfig/iptables
-    owner: root
-    group: root
-    mode: 0600
+#- name: copy iptables2 config
+#  copy:
+#    src: iptables
+#    dest: /etc/sysconfig/iptables
+#    owner: root
+#    group: root
+#    mode: 0600
 
 - name: start and enable iptables service
   service:
