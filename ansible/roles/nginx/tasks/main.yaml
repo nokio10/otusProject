@@ -46,7 +46,7 @@
     path: /etc/nginx/certs
     state: directory
 
-- name: Add ott_tricolor_tv_bundle_crt
+- name: Add ssl_key
   copy:
     dest: /etc/nginx/certs/ssl.crt
     src: /vagrant/ansible/roles/nginx/files/ssl.key
@@ -55,7 +55,7 @@
     owner: root
     mode: '0644'
 
-- name: Add ott_tricolor_tv_bundle_crt
+- name: Add ssl_crt
   copy:
     dest: /etc/nginx/certs/ssl.crt
     src: /vagrant/ansible/roles/nginx/files/ssl.crt
@@ -66,7 +66,7 @@
 
 - name: copy nginx.conf
   copy:
-    dest: /etc/nginx/conf.d/mds_pos_prod_proxy.conf
+    dest: /etc/nginx/conf.d/myconf.conf
     src: /vagrant/ansible/roles/nginx/files/nginx.conf
     group: root
     owner: root
