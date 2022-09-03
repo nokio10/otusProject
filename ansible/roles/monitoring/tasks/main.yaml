@@ -1,0 +1,8 @@
+- name: install packages
+  yum: 
+    name: 
+      - docker-compose
+      - docker
+    state: present
+    update_cache: true
+
