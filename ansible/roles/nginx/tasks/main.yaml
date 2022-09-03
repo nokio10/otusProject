@@ -16,13 +16,13 @@
     name: pexpect
 
 - name: Set httpd_can_network_connect
-  ansible.posix.seboolean:
+  seboolean:
     name: httpd_can_network_connect
     state: yes
     persistent: yes
 
 - name: Set httpd_setrlimit
-  ansible.posix.seboolean:
+  seboolean:
     name: httpd_setrlimit
     state: yes
     persistent: yes
@@ -71,7 +71,7 @@
 - name: copy myconf.conf
   copy:
     dest: /etc/nginx/conf.d/myconf.conf
-    src: /vagrant/ansible/roles/nginx/files/nyconf.conf
+    src: /vagrant/ansible/roles/nginx/files/myconf.conf
     group: root
     owner: root
     mode: '0644'
