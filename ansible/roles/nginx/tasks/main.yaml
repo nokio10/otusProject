@@ -168,8 +168,3 @@
     name: iptables
     state: restarted
     enabled: true
-
-- name: import index pattern
-  shell: 'curl -X POST localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@myweb.ndjson'
-  args:
-    chdir: /vagrant/ansible/roles/backup/files/
