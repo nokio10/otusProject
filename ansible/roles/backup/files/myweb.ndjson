@@ -1,0 +1,2 @@
+{"attributes":{"fieldAttrs":"{}","fields":"[]","runtimeFieldMap":"{}","timeFieldName":"@timestamp","title":"myweb*","typeMeta":"{}"},"coreMigrationVersion":"7.17.6","id":"c99cbd00-2b94-11ed-9c61-1905dda798f9","migrationVersion":{"index-pattern":"7.11.0"},"references":[],"type":"index-pattern","updated_at":"2022-09-03T14:29:15.600Z","version":"WzIxLDFd"}
+{"excludedObjects":[],"excludedObjectsCount":0,"exportedCount":1,"missingRefCount":0,"missingReferences":[]}
