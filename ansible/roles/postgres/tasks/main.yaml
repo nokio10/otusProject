@@ -13,6 +13,7 @@
       - policycoreutils-python
       - python-pip
       - python-setuptools
+      - filebeat
     state: present
     update_cache: true
     
@@ -97,6 +98,33 @@
       '.*Password.*': "{{ repluser_password }}"
   when: ansible_hostname == 'slave'
   
+- name: Create log dir
+  file:
+    path: /var/log/postgresql
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0644'
+
+- name: load filebeat.yml
+  copy:
+    src: "filebeat.yml"
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Active nginx.yml
+  copy:
+    src: postgresql.yml
+    dest: /etc/filebeat/modules.d/postgresql.yml 
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: restarted
+
 - name: start postgresql
   systemd:
     name: postgresql-14
