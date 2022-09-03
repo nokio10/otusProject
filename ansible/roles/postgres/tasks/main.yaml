@@ -27,7 +27,7 @@
     state: directory
     owner: postgres
     group: postgres
-    mode: '0644'
+    mode: '0744'
 
 - name: check init 
   stat:
