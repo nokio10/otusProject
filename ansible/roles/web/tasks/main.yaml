@@ -3,8 +3,32 @@
     name: 
       - docker-compose
       - docker
+      - audispd-plugins
+      - filebeat
     state: present
     update_cache: true
+
+- name: load filebeat.yml
+  copy:
+    src: "filebeat.yml"
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+
+- name: Active nginx.yml
+  copy:
+    src: /etc/filebeat/modules.d/nginx.yml.disabled
+    dest: /etc/filebeat/modules.d/web.yml
+    remote_src: yes 
+
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: restarted
 
 - name: start docker
   systemd:

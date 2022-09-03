@@ -4,6 +4,32 @@
     state: present
     update_cache: true
 
+- name: Copy timezone
+  copy:
+    src: "/usr/share/zoneinfo/Europe/Moscow"
+    dest: /etc/localtime
+    remote_src: yes
+
+- name: load filebeat.repo
+  copy:
+    src: "filebeat.repo"
+    dest: /etc/yum.repos.d/kibana.repo
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: install chrony
+  yum:
+    name: chrony
+    state: present
+    update_cache: true
+
+- name: restart chronyd
+  systemd:
+    name: chronyd
+    enabled: yes
+    state: restarted
+
 - name: Add sysctl rules
   sysctl:
     name: '{{ item.key }}'

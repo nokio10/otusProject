@@ -6,6 +6,8 @@
       - python-pip
       - python-setuptools
       - libsemanage-python
+      - audispd-plugins
+      - filebeat
     state: present
     update_cache: true
 
@@ -84,6 +86,41 @@
     mode: '0644'
     remote_src: yes
 
+- name: Add audit.rules
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    line: |
+      -w /etc/nginx/nginx.conf -p wa -k nginx_conf
+      -w /etc/nginx/cond.d/ -p wa -k nginx_conf
+
+- name: load auditd.conf
+  copy:
+    src: "auditd.conf"
+    dest: /etc/audit/auditd.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: load au-remote.conf
+  copy:
+    src: "au-remote.conf"
+    dest: /etc/audisp/plugins.d/au-remote.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: load audisp-remote.conf
+  template:
+    src: "audisp-remote.conf.j2"
+    dest: /etc/audisp/audisp-remote.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Restart auditd
+  shell: service auditd restart
+
+
 - name: Test nginx.conf
   command: "nginx -t"
   register: test
@@ -95,6 +132,28 @@
 - name: start nginx
   systemd:
     name: nginx
+    enabled: yes
+    state: restarted
+
+- name: load filebeat.yml
+  copy:
+    src: "filebeat.yml"
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+
+- name: Active nginx.yml
+  copy:
+    src: /etc/filebeat/modules.d/nginx.yml.disabled
+    dest: /etc/filebeat/modules.d/nginx.yml
+    remote_src: yes 
+
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
     enabled: yes
     state: restarted
 
