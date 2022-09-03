@@ -36,7 +36,10 @@ Vagrant.configure("2") do |config|
       if boxname.to_s == "nginx"
       box.vm.network "forwarded_port", guest: 80, host: 80
       box.vm.network "forwarded_port", guest: 443, host: 443
-        end
+      end
+      if boxname.to_s == "backup"
+            box.vm.network "forwarded_port", guest: 5601, host: 5601
+              end
           box.vm.provider :virtualbox do |vb|
             vb.customize ["modifyvm", :id, "--memory", "1024"]
           end

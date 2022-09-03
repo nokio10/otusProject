@@ -46,3 +46,22 @@
   args:
     chdir: /vagrant/ansible/roles/web/files/
   ignore_errors: true
+
+- name: load filebeat.yml
+  copy:
+    src: "filebeat.yml"
+    dest: /etc/filebeat/filebeat.yml
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Active web.yml
+  copy:
+    src: web.yml
+    dest: /etc/filebeat/modules.d/nginx.yml 
+
+- name: restart filebeat
+  systemd:
+    name: filebeat
+    enabled: yes
+    state: restarted

@@ -1,0 +1,4 @@
+- module: nginx
+  access:
+    enabled: true
+    var.paths: ["/var/lib/docker/containers/*/*.log"]

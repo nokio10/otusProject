@@ -4,6 +4,8 @@ services:
   web:
     build: .
     command: python /website/manage.py runserver 0.0.0.0:8000
+    logging:
+      driver: "json-file"
     volumes:
       - .:/website:Z
     ports:
