@@ -150,6 +150,11 @@
     dest: /etc/filebeat/modules.d/nginx.yml
     remote_src: yes 
 
+- name: Add audit.rules
+  lineinfile:
+    path: /etc/filebeat/modules.d/nginx.yml
+    line: "var.paths: /var/log/nginx/nginx.log"
+    regep: "#var.paths:"
 
 - name: restart filebeat
   systemd:
