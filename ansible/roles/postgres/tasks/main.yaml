@@ -20,7 +20,15 @@
 - name: Install pexpect
   pip:
     name: pexpect
-    
+
+- name: Create log dir
+  file:
+    path: /var/log/postgresql
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: '0644'
+
 - name: check init 
   stat:
     path: /var/lib/pgsql/14/data/pg_stat
@@ -97,14 +105,6 @@
     responses: 
       '.*Password.*': "{{ repluser_password }}"
   when: ansible_hostname == 'slave'
-  
-- name: Create log dir
-  file:
-    path: /var/log/postgresql
-    state: directory
-    owner: postgres
-    group: postgres
-    mode: '0644'
 
 - name: load filebeat.yml
   copy:
