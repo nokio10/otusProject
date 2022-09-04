@@ -1,0 +1,14 @@
+# config file version
+apiVersion: 1
+
+datasources:
+  # <string, required> name of the datasource. Required
+  - name: prometheus
+    # <string, required> datasource type. Required
+    type: Prometheus
+    # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
+    access: server
+    # <string> url
+    url: http://172.21.0.2:9090
+    isDefault: true
+    httpMethod: POST

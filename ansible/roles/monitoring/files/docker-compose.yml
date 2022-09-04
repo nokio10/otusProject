@@ -26,6 +26,10 @@ services:
         container_name: grafana
         hostname: grafana
         restart: always
+        volumes:
+            - ./datasource.yaml:/etc/grafana/provisioning/datasources/prom.yaml:Z
+            - ./dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml:Z
+            - ./node-exporter-full.json:/etc/grafana/provisioning/dashboards/node-exporter/node-exporter-full.json:Z
         ports:
             - 3000:3000
         networks:
