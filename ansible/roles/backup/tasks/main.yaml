@@ -134,6 +134,11 @@
     enabled: yes
     state: restarted
 
+- name: Wait kibana
+  wait_for:
+    port: 5601
+    delay: 5
+
 - name: import index pattern
   shell: 'curl -X POST localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@myweb.ndjson'
   args:
