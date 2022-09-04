@@ -8,6 +8,6 @@ providers:
     # <bool> allow updating provisioned dashboards from the UI
     allowUiUpdates: true
     options:
-      path: /etc/grafana/node-exporter-full.json
+      path: /etc/grafana/provisioning/dashboards/node-exporter/node-exporter-full.json
       # <bool> use folder names from filesystem to create folders in Grafana
       foldersFromFilesStructure: true
