@@ -27,7 +27,7 @@
 
 - name: start node-exporter service
   systemd:
-    name: node-exporter
+    name: /etc/systemd/system/node_exporter.service
     enabled: yes
     state: restarted
     daemon_reload: yes
