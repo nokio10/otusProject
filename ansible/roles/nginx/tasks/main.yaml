@@ -7,7 +7,8 @@
       - python-setuptools
       - libsemanage-python
       - audispd-plugins
-      - filebeat
+      - filebeat=7.17.6
+      - nginx=1.20.1
     state: present
     update_cache: true
 
@@ -39,11 +40,6 @@
       '.*Organizational Unit.*': "linux-administrator" 
       '.*Common Name.*': "otusproject.som" 
       '.*Email Address.*': "1@1.ru" 
-
-- name: Install nginx
-  yum:
-    name: nginx
-    state: present
 
 - name: Check certs dir
   file: 
