@@ -146,13 +146,6 @@
     delay: 10
 
 - name: import index pattern
-  uri:
-    method: POST
-    url: http://localhost:5601/api/saved_objects/_import?createNewCopies=true
-    headers: 
-      kbn-xsrf: true
-    body_format: form-multipart
-    body:
-      myweb.ndjson:
-        filename: /vagrant/ansible/roles/backup/files/myweb.ndjson
-        mime_type: file
+  shell: 'curl -X POST localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@myweb.ndjson'
+  args:
+    chdir: /vagrant/ansible/roles/backup/files/
