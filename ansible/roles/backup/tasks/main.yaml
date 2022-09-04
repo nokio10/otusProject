@@ -53,6 +53,19 @@
   shell: echo "*/30 * * * *   barman /usr/bin/barman backup pg" >> /etc/crontab
 
 #Настройка сервера сбора логов
+- name: Config kibana host
+  lineinfile:
+    dest: /etc/kibana/kibana.yml
+    regexp: '#server.host: "localhost"'
+    line: 'server.host: "0.0.0.0"'
+    state: present
+
+
+- name: restart kibana
+  systemd:
+    name: kibana
+    enabled: yes
+    state: restarted
 
 - name: load rsyslog.conf
   copy:
@@ -115,21 +128,6 @@
 - name: restart elasticsearch
   systemd:
     name: elasticsearch
-    enabled: yes
-    state: restarted
-
-
-- name: Config kibana host
-  lineinfile:
-    dest: /etc/kibana/kibana.yml
-    regexp: '#server.host: "localhost"'
-    line: 'server.host: "0.0.0.0"'
-    state: present
-
-
-- name: restart kibana
-  systemd:
-    name: kibana
     enabled: yes
     state: restarted
 
