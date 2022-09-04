@@ -50,7 +50,6 @@
 - name: Start barman
   shell: barman switch-xlog --force --archive pg
   ignore_errors: yes
-  
 - name: Add crontab
   shell: echo "*/30 * * * *   barman /usr/bin/barman backup pg" >> /etc/crontab
 
@@ -152,5 +151,7 @@
     url: http://localhost:5601/api/saved_objects/_import?createNewCopies=true
     headers: 
       kbn-xsrf: true
-    src: /vagrant/ansible/roles/backup/files/myweb.ndjson
-    remote_src: yes
+    body:
+      file:
+        filename: /vagrant/ansible/roles/backup/files/myweb.ndjson
+        mime_type: file
