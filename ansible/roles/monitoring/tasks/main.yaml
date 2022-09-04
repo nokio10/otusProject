@@ -23,5 +23,5 @@
 - name: Docker-compose up
   command: docker-compose -f docker-compose.yml up -d
   args:
-    chdir: /vagrant/ansible/roles/web/files/
+    chdir: /vagrant/ansible/roles/monitoring/files/
 
