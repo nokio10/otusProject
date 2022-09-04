@@ -7,8 +7,8 @@
       - python-setuptools
       - libsemanage-python
       - audispd-plugins
-      - filebeat=7.17.6-1
-      - nginx=1:1.20.1-9.el7
+      - filebeat
+      - nginx
     state: present
     update_cache: true
 
