@@ -45,9 +45,11 @@
 
 - name: Start barman
   shell: barman cron && barman receive-wal --create-slot pg
-  
+  ignore_errors: yes
+
 - name: Start barman
   shell: barman switch-xlog --force --archive pg
+  ignore_errors: yes
   
 - name: Add crontab
   shell: echo "*/30 * * * *   barman /usr/bin/barman backup pg" >> /etc/crontab
