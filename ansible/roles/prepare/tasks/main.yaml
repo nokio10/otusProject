@@ -11,7 +11,7 @@
 
 - name: copy node-exporter bin
   copy:
-    src: node_exporter
+    src: node-exporter
     dest: /usr/local/bin/node-exporter
     owner: node-exporter
     group: node-exporter
@@ -20,14 +20,14 @@
 - name: copy node-exporter service
   copy:
     src: node-exporter.service
-    dest: /etc/systemd/system/node_exporter.service
+    dest: /etc/systemd/system/node-exporter.service
     owner: root
     group: root
     mode: '0644'  
-
+    
 - name: start node-exporter service
   systemd:
-    name: /etc/systemd/system/node_exporter.service
+    name: node-exporter
     enabled: yes
     state: restarted
     daemon_reload: yes
