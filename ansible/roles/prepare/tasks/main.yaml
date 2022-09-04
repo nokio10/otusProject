@@ -4,12 +4,6 @@
     state: present
     update_cache: true
 
-- name: install node-exporter
-  yum: 
-    name: wget
-    state: present
-    update_cache: true
-
 - name: Add node-exporter user
   user:
     name: node-exporter 
@@ -17,7 +11,7 @@
 
 - name: copy node-exporter bin
   copy:
-    src: node-exporter
+    src: node_exporter
     dest: /usr/local/bin/node-exporter
     owner: node-exporter
     group: node-exporter
