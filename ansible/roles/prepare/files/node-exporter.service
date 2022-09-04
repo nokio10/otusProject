@@ -3,7 +3,6 @@ Description=Node Exporter
 
 [Service]
 User=node-exporter
-EnvironmentFile=/etc/sysconfig/node-exporter
 ExecStart=/usr/local/bin/node-exporter $OPTIONS
 
 [Install]
