@@ -3,7 +3,10 @@ version: '2'
 networks:
     monitor:
         driver: bridge
- 
+        ipam:
+        config:
+            - subnet: 172.21.0.0/16
+
 services:
     prometheus:
         image: prom/prometheus
@@ -16,8 +19,8 @@ services:
         ports:
             - "9090:9090"
         networks:
-            - monitor
- 
+            monitor:
+                ipv4_address: 172.21.0.2
     grafana:
         image: grafana/grafana
         container_name: grafana
@@ -26,4 +29,5 @@ services:
         ports:
             - 3000:3000
         networks:
-            - monitor
+            monitor:
+                ipv4_address: 172.21.0.3
