@@ -151,7 +151,8 @@
     url: http://localhost:5601/api/saved_objects/_import?createNewCopies=true
     headers: 
       kbn-xsrf: true
+    body_format: form-multipart
     body:
-      file:
+      myweb.ndjson:
         filename: /vagrant/ansible/roles/backup/files/myweb.ndjson
         mime_type: file
