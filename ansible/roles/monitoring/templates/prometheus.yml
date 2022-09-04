@@ -3,13 +3,6 @@ global:
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
   # scrape_timeout is set to the global default (10s).
  
-# Alertmanager configuration
-alerting:
-  alertmanagers:
-  - static_configs:
-    - targets: ['192.168.1.151:9093']
-      # - alertmanager:9093
- 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
   - "node_down.yml"
@@ -20,15 +13,23 @@ rule_files:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
+  - job_name: 'master'
     static_configs:
-      - targets: ['192.168.1.151:9090']
+      - targets: ["{{ hostvars[master]['ansible_default_ipv4']['address'] }}:9090"]
  
-  - job_name: 'cadvisor'
+  - job_name: 'slave'
     static_configs:
-      - targets: ['192.168.1.151:8080']
- 
-  - job_name: 'node'
-    scrape_interval: 8s
+      - targets: ["{{ hostvars[slave]['ansible_default_ipv4']['address'] }}:9090"]
+
+  - job_name: 'nginx'
     static_configs:
-      - targets: ['192.168.1.151:9100']
+      - targets: ["{{ hostvars[nginx]['ansible_default_ipv4']['address'] }}:9090"]
+
+  - job_name: 'web'
+    static_configs:
+      - targets: ["{{ hostvars[web]['ansible_default_ipv4']['address'] }}:9090"]
+
+  - job_name: 'backup'
+    static_configs:
+      - targets: ["{{ hostvars[backup]['ansible_default_ipv4']['address'] }}:9090"]
+

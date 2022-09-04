@@ -6,3 +6,22 @@
     state: present
     update_cache: true
 
+- name: Create prom.yml
+  template:
+    src: prometheus.yml
+    dest: /vagrant/ansible/roles/monitoring/files/prometheus.yml
+    owner: root
+    group: root
+    mode: 0600
+
+- name: start docker
+  systemd:
+    name: docker
+    enabled: yes
+    state: restarted
+
+- name: Docker-compose up
+  command: docker-compose -f docker-compose.yml up -d
+  args:
+    chdir: /vagrant/ansible/roles/web/files/
+

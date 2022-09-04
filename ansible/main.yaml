@@ -3,6 +3,11 @@
   roles:
     - role: roles/prepare
 
+- hosts: monitoring
+  become: yes
+  roles:
+    - role: roles/monitoring   
+
 - hosts: postgres
   become: yes
   roles:
