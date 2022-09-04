@@ -147,7 +147,7 @@
 - name: import index pattern
   uri:
     method: POST
-    url: localhost:5601/api/saved_objects/_import?createNewCopies=true
+    url: http://localhost:5601/api/saved_objects/_import?createNewCopies=true
     headers: 
       kbn-xsrf: true
     src: /vagrant/ansible/roles/backup/files/myweb.ndjson
