@@ -14,4 +14,5 @@
 -A INPUT -p tcp --dport 22 -j ACCEPT -m comment --comment "ssh access"
 -A INPUT -p tcp --dport 80 -j ACCEPT -m comment --comment "http access"
 -A INPUT -p tcp --dport 443 -j ACCEPT -m comment --comment "https access"
+-A INPUT -i eth1 -p tcp -s 192.168.11.154 --dport 9100 -m state --state NEW -j ACCEPT
 COMMIT

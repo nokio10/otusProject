@@ -6,9 +6,37 @@
 
 - name: install node-exporter
   yum: 
-    name: node-exporter
+    name: wget
     state: present
     update_cache: true
+
+- name: Add node-exporter user
+  user:
+    name: node-exporter 
+    state: present
+
+- name: copy node-exporter bin
+  copy:
+    src: node-exporter
+    dest: /usr/local/bin/node-exporter
+    owner: node-exporter
+    group: node-exporter
+    mode: '0744'   
+
+- name: copy node-exporter service
+  copy:
+    src: node-exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+    owner: root
+    group: root
+    mode: '0644'  
+
+- name: start node-exporter service
+  systemd:
+    name: node-exporter
+    enabled: yes
+    state: restarted
+    daemon_reload: yes
 
 - name: Copy timezone
   copy:
