@@ -60,12 +60,13 @@
     line: 'server.host: "0.0.0.0"'
     state: present
 
-
 - name: restart kibana
   systemd:
     name: kibana
     enabled: yes
     state: restarted
+  retries: 5
+  delay: 10
 
 - name: load rsyslog.conf
   copy:
@@ -80,6 +81,8 @@
     name: rsyslog
     enabled: yes
     state: restarted
+  retries: 5
+  delay: 10
 
 - name: Config auditd
   lineinfile:
@@ -90,6 +93,8 @@
 
 - name: Restart auditd
   shell: service auditd restart
+  retries: 5
+  delay: 10
 
 - name: load filter.conf
   copy:
@@ -123,6 +128,8 @@
     name: logstash
     enabled: yes
     state: restarted
+  retries: 5
+  delay: 10
 
 
 - name: restart elasticsearch
@@ -130,6 +137,8 @@
     name: elasticsearch
     enabled: yes
     state: restarted
+  retries: 5
+  delay: 10
 
 - name: import index pattern
   shell: 'curl -X POST localhost:5601/api/saved_objects/_import?createNewCopies=true -H "kbn-xsrf: true" --form file=@myweb.ndjson'

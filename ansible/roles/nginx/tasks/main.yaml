@@ -143,7 +143,6 @@
     group: root
     mode: '0644'
 
-
 - name: Active nginx.yml
   copy:
     src: nginx.yml
@@ -163,8 +162,22 @@
     group: root
     mode: 0600
 
+- name: copy ip6tables config
+  copy:
+    src: ip6tables
+    dest: /etc/sysconfig/ip6tables
+    owner: root
+    group: root
+    mode: 0600
+
 - name: start and enable iptables service
   service:
     name: iptables
+    state: restarted
+    enabled: true
+
+- name: start and enable ip6tables service
+  service:
+    name: ip6tables
     state: restarted
     enabled: true
