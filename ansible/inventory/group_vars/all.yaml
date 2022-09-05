@@ -4,40 +4,40 @@ repluser_password: "12345678q"
 barman_password: "14253678q"
 
 sysctl:
-  nginx:
-    net.core.somaxconn: "65535"
-    net.ipv4.netfilter.ip_conntrack_max: "1048576"
-    net.netfilter.nf_conntrack_max: "1048576"
-    net.ipv4.tcp_max_syn_backlog: "65535"
-    net.ipv4.tcp_syncookies: "1"
-    net.ipv4.tcp_timestamps: "1"
-    net.ipv4.ip_local_port_range: "1024 65535"
-    fs.nr_open: 200000
-    fs.file-max: 200000
-  web:
-    net.core.somaxconn: "65535"
-    net.ipv4.netfilter.ip_conntrack_max: "1048576"
-    net.netfilter.nf_conntrack_max: "1048576"
-    net.ipv4.tcp_max_syn_backlog: "65535"
-    net.ipv4.tcp_syncookies: "1"
-    net.ipv4.tcp_timestamps: "1"
-    net.ipv4.ip_local_port_range: "1024 65535"
-  master:
-    net.core.somaxconn: "65535"
-    net.ipv4.netfilter.ip_conntrack_max: "1048576"
-    net.netfilter.nf_conntrack_max: "1048576"
-    net.ipv4.tcp_max_syn_backlog: "65535"
-    net.ipv4.tcp_syncookies: "1"
-    net.ipv4.tcp_timestamps: "1"
-    net.ipv4.ip_local_port_range: "1024 65535"
-  slave:
-    net.core.somaxconn: "65535"
-    net.ipv4.netfilter.ip_conntrack_max: "1048576"
-    net.netfilter.nf_conntrack_max: "1048576"
-    net.ipv4.tcp_max_syn_backlog: "65535"
-    net.ipv4.tcp_syncookies: "1"
-    net.ipv4.tcp_timestamps: "1"
-    net.ipv4.ip_local_port_range: "1024 65535"
+  - nginx:
+      net.core.somaxconn: "65535"
+      net.ipv4.netfilter.ip_conntrack_max: "1048576"
+      net.netfilter.nf_conntrack_max: "1048576"
+      net.ipv4.tcp_max_syn_backlog: "65535"
+      net.ipv4.tcp_syncookies: "1"
+      net.ipv4.tcp_timestamps: "1"
+      net.ipv4.ip_local_port_range: "1024 65535"
+      fs.nr_open: 200000
+      fs.file-max: 200000
+  - web:
+      net.core.somaxconn: "65535"
+      net.ipv4.netfilter.ip_conntrack_max: "1048576"
+      net.netfilter.nf_conntrack_max: "1048576"
+      net.ipv4.tcp_max_syn_backlog: "65535"
+      net.ipv4.tcp_syncookies: "1"
+      net.ipv4.tcp_timestamps: "1"
+      net.ipv4.ip_local_port_range: "1024 65535"
+  - master:
+      net.core.somaxconn: "65535"
+      net.ipv4.netfilter.ip_conntrack_max: "1048576"
+      net.netfilter.nf_conntrack_max: "1048576"
+      net.ipv4.tcp_max_syn_backlog: "65535"
+      net.ipv4.tcp_syncookies: "1"
+      net.ipv4.tcp_timestamps: "1"
+      net.ipv4.ip_local_port_range: "1024 65535"
+  - slave:
+      net.core.somaxconn: "65535"
+      net.ipv4.netfilter.ip_conntrack_max: "1048576"
+      net.netfilter.nf_conntrack_max: "1048576"
+      net.ipv4.tcp_max_syn_backlog: "65535"
+      net.ipv4.tcp_syncookies: "1"
+      net.ipv4.tcp_timestamps: "1"
+      net.ipv4.ip_local_port_range: "1024 65535"
 
 sysctl_nginx:
   net.core.somaxconn: "65535"
