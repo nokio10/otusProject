@@ -58,6 +58,13 @@
     enabled: yes
     state: restarted
 
+- name: Set modules-load
+  lineinfile:
+    dest: /etc/modules-load.d/k3s.conf
+    line: |
+      ip_conntrack
+      nf_conntrack
+
 - name: Add sysctl rules
   sysctl:
     name: '{{ item.key }}'
