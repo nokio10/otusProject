@@ -67,3 +67,4 @@
     reload: yes
     ignoreerrors: yes
   with_dict: "{{ sysctl }}"
+  when: item == ansible_hostname
