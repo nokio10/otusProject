@@ -46,12 +46,6 @@
     group: root
     mode: '0644'
 
-- name: install chrony
-  yum:
-    name: chrony
-    state: present
-    update_cache: true
-
 - name: restart chronyd
   systemd:
     name: chronyd
