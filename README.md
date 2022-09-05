@@ -14,5 +14,27 @@
 
 ## Установка
 
+Стенд разворачивается командой ```vagrant up``` .
 
+В отдельные плейбуки вынесены отдельные роли, при необходимости можно заменить конфигурацию серверов командами:
 
+web
+```
+ansible-playbook -i ansible/inventory/hosts.ini ansible/web.yaml
+```
+backup
+```
+ansible-playbook -i ansible/inventory/hosts.ini ansible/backup.yaml
+```
+monitoring
+```
+ansible-playbook -i ansible/inventory/hosts.ini ansible/mon.yaml
+```
+nginx
+```
+ansible-playbook -i ansible/inventory/hosts.ini ansible/backup.yaml
+```
+Начальная подготовка серверов (роль prepare).
+```
+ansible-playbook -i ansible/inventory/hosts.ini ansible/pre.yaml
+```
