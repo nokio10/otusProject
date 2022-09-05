@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
             box.vm.provider :virtualbox do |vb|
                   vb.customize ["modifyvm", :id, "--memory", "1024"]
 		  if boxname.to_s == "backup"
-                        vb.customize ["modifyvm", :id, "--memory", "2048"]
+                        vb.customize ["modifyvm", :id, "--memory", "4096"]
                   end
             end
 
