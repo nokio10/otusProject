@@ -38,41 +38,19 @@ sysctl:
     net.ipv4.tcp_syncookies: "1"
     net.ipv4.tcp_timestamps: "1"
     net.ipv4.ip_local_port_range: "1024 65535"
-
-sysctl_nginx:
-  net.core.somaxconn: "65535"
-  net.ipv4.netfilter.ip_conntrack_max: "1048576"
-  net.netfilter.nf_conntrack_max: "1048576"
-  net.ipv4.tcp_max_syn_backlog: "65535"
-  net.ipv4.tcp_syncookies: "1"
-  net.ipv4.tcp_timestamps: "1"
-  net.ipv4.ip_local_port_range: "1024 65535"
-  fs.nr_open: "{{ limit }}"
-  fs.file-max: "{{ limit }}"
-
-sysctl_web:
-  net.core.somaxconn: "65535"
-  net.ipv4.netfilter.ip_conntrack_max: "1048576"
-  net.netfilter.nf_conntrack_max: "1048576"
-  net.ipv4.tcp_max_syn_backlog: "65535"
-  net.ipv4.tcp_syncookies: "1"
-  net.ipv4.tcp_timestamps: "1"
-  net.ipv4.ip_local_port_range: "1024 65535"
-
-sysctl_master:
-  net.core.somaxconn: "65535"
-  net.ipv4.netfilter.ip_conntrack_max: "1048576"
-  net.netfilter.nf_conntrack_max: "1048576"
-  net.ipv4.tcp_max_syn_backlog: "65535"
-  net.ipv4.tcp_syncookies: "1"
-  net.ipv4.tcp_timestamps: "1"
-  net.ipv4.ip_local_port_range: "1024 65535"
-
-sysctl_slave:
-  net.core.somaxconn: "65535"
-  net.ipv4.netfilter.ip_conntrack_max: "1048576"
-  net.netfilter.nf_conntrack_max: "1048576"
-  net.ipv4.tcp_max_syn_backlog: "65535"
-  net.ipv4.tcp_syncookies: "1"
-  net.ipv4.tcp_timestamps: "1"
-  net.ipv4.ip_local_port_range: "1024 65535"
+  backup:
+    net.core.somaxconn: "65535"
+    net.ipv4.netfilter.ip_conntrack_max: "1048576"
+    net.netfilter.nf_conntrack_max: "1048576"
+    net.ipv4.tcp_max_syn_backlog: "65535"
+    net.ipv4.tcp_syncookies: "1"
+    net.ipv4.tcp_timestamps: "1"
+    net.ipv4.ip_local_port_range: "1024 65535"
+  monitoring:
+    net.core.somaxconn: "65535"
+    net.ipv4.netfilter.ip_conntrack_max: "1048576"
+    net.netfilter.nf_conntrack_max: "1048576"
+    net.ipv4.tcp_max_syn_backlog: "65535"
+    net.ipv4.tcp_syncookies: "1"
+    net.ipv4.tcp_timestamps: "1"
+    net.ipv4.ip_local_port_range: "1024 65535"    
