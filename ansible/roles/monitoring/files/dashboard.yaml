@@ -2,12 +2,12 @@ apiVersion: 1
 
 providers:
   - name: 'Node exporter'
-    folder: 'General'
+    folder: 'node-exporter'
     # <int> how often Grafana will scan for changed dashboards
     updateIntervalSeconds: 60
     # <bool> allow updating provisioned dashboards from the UI
     allowUiUpdates: true
     options:
-      path: /etc/grafana/provisioning/dashboards/node-exporter/node-exporter-full.json
+      path: /etc/grafana/provisioning/dashboards/node-exporter/
       # <bool> use folder names from filesystem to create folders in Grafana
       foldersFromFilesStructure: true
