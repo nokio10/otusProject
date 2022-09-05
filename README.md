@@ -89,6 +89,15 @@
   - Для поиска логов по отдельным машинам использовать фильтр ```host.name```
   ![image](https://user-images.githubusercontent.com/98832702/188472974-ff8befbf-8117-4ed2-b9fd-9feedeaa36fe.png)
 
-
-  
+  4. Barman
+  - Посмотреть список бекапов
+  ```
+  [root@backup ~]# barman list-backup pg
+  pg 20220905T173002 - Mon Sep  5 14:30:03 2022 - Size: 34.3 MiB - WAL Size: 0 B
+  pg 20220905T170002 - Mon Sep  5 14:00:04 2022 - Size: 34.2 MiB - WAL Size: 40.8 KiB
+  ```
+  - Восстановить мастер из бекапа
+  ```
+  barman recover pg 20220905T173002 /var/lib/pgsql/14/data/ --remote-ssh-comman "ssh postgres@192.168.11.150"
+  ```
   
