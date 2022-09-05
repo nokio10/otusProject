@@ -64,6 +64,9 @@
   ansible-playbook -i ansible/inventory/hosts.ini ansible/pre.yaml
   ```
   
+  
+  В конфиругационном файле ansible/inventory/group_vars/all.yaml доступно редактирование значений sysctl (применяется на серверах ролью "prepare") и паролей postgres пользователей. 
+  
   # Краткие инструкции по работе с сервисами
   
   1. Веб сайт.
