@@ -40,6 +40,9 @@ Vagrant.configure("2") do |config|
             if boxname.to_s == "backup"
                   box.vm.network "forwarded_port", guest: 5601, host: 5601
             end
+            if boxname.to_s == "monitoring"
+                  box.vm.network "forwarded_port", guest: 3000, host: 3000
+            end
             box.vm.provider :virtualbox do |vb|
                   vb.customize ["modifyvm", :id, "--memory", "1024"]
                   if boxname.to_s == "backup"
