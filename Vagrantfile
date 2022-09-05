@@ -35,6 +35,9 @@ Vagrant.configure("2") do |config|
           box.vm.network "private_network", ip: boxconfig[:ip_addr]
             box.vm.provider :virtualbox do |vb|
                   vb.customize ["modifyvm", :id, "--memory", "1024"]
+		  if boxname.to_s == "backup"
+                        vb.customize ["modifyvm", :id, "--memory", "2048"]
+                  end
             end
 
             if boxname.to_s == "web"
