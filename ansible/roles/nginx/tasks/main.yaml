@@ -38,7 +38,7 @@
       '.*Locality Name.*': "City" 
       '.*Organization Name.*': "Otus" 
       '.*Organizational Unit.*': "linux-administrator" 
-      '.*Common Name.*': "otusproject.som" 
+      '.*Common Name.*': "otusproject.ru" 
       '.*Email Address.*': "1@1.ru" 
 
 - name: Check certs dir
