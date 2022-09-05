@@ -58,9 +58,14 @@
     enabled: yes
     state: restarted
 
+- name: touch /etc/modules-load.d/otus.conf
+  file:
+    path: /etc/modules-load.d/otus.conf
+    state: touch
+
 - name: Set modules-load
   lineinfile:
-    dest: /etc/modules-load.d/k3s.conf
+    dest: /etc/modules-load.d/otus.conf
     line: |
       ip_conntrack
       nf_conntrack
