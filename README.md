@@ -18,23 +18,23 @@
 
 В отдельные плейбуки вынесены отдельные роли, при необходимости можно заменить конфигурацию серверов командами:
 
-web
+web:
 ```
 ansible-playbook -i ansible/inventory/hosts.ini ansible/web.yaml
 ```
-backup
+backup:
 ```
 ansible-playbook -i ansible/inventory/hosts.ini ansible/backup.yaml
 ```
-monitoring
+monitoring:
 ```
 ansible-playbook -i ansible/inventory/hosts.ini ansible/mon.yaml
 ```
-nginx
+nginx:
 ```
 ansible-playbook -i ansible/inventory/hosts.ini ansible/backup.yaml
 ```
-Начальная подготовка серверов (роль prepare).
+Начальная подготовка серверов (роль prepare):
 ```
 ansible-playbook -i ansible/inventory/hosts.ini ansible/pre.yaml
 ```
