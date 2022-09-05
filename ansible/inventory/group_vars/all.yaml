@@ -4,7 +4,7 @@ repluser_password: "12345678q"
 barman_password: "14253678q"
 
 sysctl:
-  - nginx:
+  nginx:
       net.core.somaxconn: "65535"
       net.ipv4.netfilter.ip_conntrack_max: "1048576"
       net.netfilter.nf_conntrack_max: "1048576"
@@ -14,7 +14,7 @@ sysctl:
       net.ipv4.ip_local_port_range: "1024 65535"
       fs.nr_open: 200000
       fs.file-max: 200000
-  - web:
+  web:
       net.core.somaxconn: "65535"
       net.ipv4.netfilter.ip_conntrack_max: "1048576"
       net.netfilter.nf_conntrack_max: "1048576"
@@ -22,7 +22,7 @@ sysctl:
       net.ipv4.tcp_syncookies: "1"
       net.ipv4.tcp_timestamps: "1"
       net.ipv4.ip_local_port_range: "1024 65535"
-  - master:
+  master:
       net.core.somaxconn: "65535"
       net.ipv4.netfilter.ip_conntrack_max: "1048576"
       net.netfilter.nf_conntrack_max: "1048576"
@@ -30,7 +30,7 @@ sysctl:
       net.ipv4.tcp_syncookies: "1"
       net.ipv4.tcp_timestamps: "1"
       net.ipv4.ip_local_port_range: "1024 65535"
-  - slave:
+  slave:
       net.core.somaxconn: "65535"
       net.ipv4.netfilter.ip_conntrack_max: "1048576"
       net.netfilter.nf_conntrack_max: "1048576"
